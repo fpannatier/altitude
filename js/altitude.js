@@ -2,6 +2,7 @@ var phone;
 var sky;
 var logo;
 var altitude = 180;
+var maxAltitude = 3000;
 var altitudeSlider;
 //var font;
 
@@ -15,7 +16,7 @@ function preload() {
 
 function setup() {
   createP('Höhenmeter').position(350,1310);
-  altitudeSlider = createSlider(0,700,0);
+  altitudeSlider = createSlider(0,maxAltitude,0);
   altitudeSlider.position(320,1350);
   createCanvas(750,1334);
   //textFont(font);
@@ -28,15 +29,17 @@ function draw() {
 
   //image(flare,width/2,height/2,73,73);
   var altitude = altitudeSlider.value();
-  var base1 = 720 - altitude * 0.4;
-  var base2 = 830 - altitude * 0.6;
-  var base3 = 920 - altitude * 0.8;
-  var base4 = 1000 - altitude;
+  var yOffset = map(altitude,0,maxAltitude,700,0);
+
+  var base1 = 720 - yOffset * 0.4;
+  var base2 = 830 - yOffset * 0.6;
+  var base3 = 920 - yOffset * 0.8;
+  var base4 = 1000 - yOffset;
   image(sky,65 ,base4-900,620,height);
   textSize(40);
   text('Höhenmeter',270,370);
   textSize(50);
-  text('2000m',310,430);
+  text( altitude + 'm',310,430);
   console.log(altitude);
   noStroke();
   //row 1
