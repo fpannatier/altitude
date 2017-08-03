@@ -39,7 +39,7 @@ function draw() {
   textSize(40);
   text('Höhenmeter',270,370);
   textSize(50);
-  text( altitude + 'm',310,430);
+  text( altitude,310,430);
   console.log(altitude);
   noStroke();
   //row 1
