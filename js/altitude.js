@@ -4,8 +4,16 @@ var logo;
 var altitude = 180;
 var maxAltitude = 3000;
 var altitudeSlider;
-//var font;
 
+//snow variables
+var quantity = 100;
+var xPosition = [];
+var yPosition = [];
+var flakeSize = [];
+var direction = [];
+var minFlakeSize = 1;
+var maxFlakeSize = 10;
+var snowColor = 255;
 
 function preload() {
   phone = loadImage('assets/phone.png');
@@ -22,10 +30,20 @@ function setup() {
   //textFont(font);
   textFont('DINOT');
   background(0);
+
+//snow setup
+  frameRate(25);
+  for(var i = 0; i < quantity; i++) {
+    flakeSize[i] = round(random(minFlakeSize, maxFlakeSize));
+    xPosition[i] = random(0, width);
+    yPosition[i] = random(0, height);
+    direction[i] = round(random(0, 1));
+  }
 }
 
 function draw() {
   background(0);
+
 
   //image(flare,width/2,height/2,73,73);
   var altitude = altitudeSlider.value();
@@ -173,7 +191,8 @@ function draw() {
   vertex(646.718,1146.02);
   vertex(104,1146.02);
   endShape(CLOSE);
-
+  fill(255);
+  drawSnow();
   image(phone,0,0,width,height);
   image(logo,230,1075,280,41);
   fill(255);
@@ -182,4 +201,23 @@ function draw() {
   rect(width-5,0,5,height);
 
 
+}
+function drawSnow() {
+	for(var i = 0; i < xPosition.length; i++) {
+    noStroke();
+    ellipse(xPosition[i], yPosition[i], flakeSize[i], flakeSize[i]);
+
+    if(direction[i] == 0) {
+      xPosition[i] += map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, .5);
+    } else {
+      xPosition[i] -= map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, .5);
+    }
+
+    yPosition[i] += flakeSize[i] + direction[i];
+
+    if(xPosition[i] > width + flakeSize[i] || xPosition[i] < -flakeSize[i] || yPosition[i] > height + flakeSize[i]) {
+      xPosition[i] = random(0, width);
+      yPosition[i] = -flakeSize[i];
+    }
+  }
 }
