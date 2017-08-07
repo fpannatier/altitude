@@ -23,13 +23,13 @@ function preload() {
 }
 
 function setup() {
-  var p = createP('Höhenmeter');
-  p.position(350,1310);
-  p.style('font-size','20pt');
+  //var p = createP('Höhenmeter');
+  //p.position(350,1310);
+  //p.style('font-size','20pt');
 
   altitudeSlider = createSlider(0,maxAltitude,0);
   altitudeSlider.position(320,1350);
-  createCanvas(750,1334);
+  createCanvas(750,1380);
   //textFont(font);
   textFont('DINOT');
   background(0);
@@ -56,8 +56,9 @@ function draw() {
   var base2 = 830 - yOffset * 0.6;
   var base3 = 920 - yOffset * 0.8;
   var base4 = 1000 - yOffset;
-  image(sky,65 ,base4-900,620,height);
+  image(sky,65 ,base4-900,620,1334);
   textSize(40);
+  fill(255);
   text('Höhenmeter',270,370);
   textSize(50);
   text( altitude,310,430);
@@ -196,12 +197,15 @@ function draw() {
   endShape(CLOSE);
   fill(255);
   drawSnow();
-  image(phone,0,0,width,height);
+  image(phone,0,0,width,1334);
   image(logo,230,1075,280,41);
   fill(255);
   rect(0,0,width,10);
-  rect(0,height-10,width,10);
+  rect(0,height-50,width,60);
   rect(width-5,0,5,height);
+  fill(0);
+  textSize(35);
+  text('Höhenmeter', 290,1340);
 
 
 }
