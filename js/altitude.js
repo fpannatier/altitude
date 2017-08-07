@@ -45,6 +45,8 @@ function setup() {
 }
 
 function draw() {
+  var scaleAmount = 60 / 100;
+  scale(scaleAmount);
   background(0);
 
 
