@@ -23,7 +23,10 @@ function preload() {
 }
 
 function setup() {
-  createP('Höhenmeter').position(350,1310);
+  var p = createP('Höhenmeter');
+  p.position(350,1310);
+  p.style('font-size','20pt');
+
   altitudeSlider = createSlider(0,maxAltitude,0);
   altitudeSlider.position(320,1350);
   createCanvas(750,1334);
